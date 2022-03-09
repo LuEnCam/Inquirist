@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>New person</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <h1>New person</h1>
+        <form th:action="@{/insert}" th:object="${person}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            
+            <label for="prenom">First name of the person</label>
+            <input type="text" th:field="*{prenom}" />
+            
+            <label for="nom">Last name of the person</label>
+            <input type="text" th:field="*{nom}"/>
+            
+            <input type="submit" />
+        </form>
+    </body>
+</html>

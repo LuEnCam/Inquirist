@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>List of all persons</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <h1>List of all persons</h1>
+        <table>
+            <thead>
+                <tr>
+                	<th>Id</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody th:remove="all-but-first">
+                <tr th:each="person : ${persons}">
+                 	<td th:text="${person.id}"></td>
+                    <td th:text="${person.prenom}"></td>
+                    <td th:text="${person.nom}"></td>
+                    <td>
+                    	<form th:action="@{/remove}" th:object="${person}" method="post">
+		                    <input type="hidden" name="id" th:value="${person.id}">
+		                    <input type="hidden" name="nom" th:value="${person.nom}">
+		                    <input type="hidden" name="prenom" th:value="${person.prenom}">
+		                    <button type="submit">Delete</button>
+		               </form>
+                    </td>
+                    <td>
+                    	<form th:action="@{/id}" th:object="${person.id}" method="post">
+		                    <button type="submit">Detail</button>
+		               </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <a href="/create">New person</a>
+    </body>
+</html>
